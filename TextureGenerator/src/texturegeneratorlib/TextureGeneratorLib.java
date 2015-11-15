@@ -52,10 +52,10 @@ public class TextureGeneratorLib {
 	 * Use this method to add blocks for texture generation
 	 * 
 	 * @param block - an instance of the block to be retextured
-	 * @param textureName - texture name for the texture to be created
-	 * @param parentTexture - name of the background texture
-	 * @param masktype - name of the overlay
-	 * @param maskDomain - MODID for the domain in which the overlay can be found
+	 * @param textureName - texture name for the texture to be created (without a domain)
+	 * @param parentTexture - name and domain of the background texture (e.g. "minecraft:stone")
+	 * @param masktype - name of the overlay (without the size indicator, and without the file extension)
+	 * @param maskDomain - MODID for the domain in which the overlay can be found, e.g wtfores:textures/blocks/overlays/
 	 * @param alphaMask - set this to true for an alpha mask cutout (stalactites), set it to false for an overlay composite (ores)
 	 */
 	
