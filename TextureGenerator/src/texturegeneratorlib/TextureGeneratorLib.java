@@ -51,12 +51,12 @@ public class TextureGeneratorLib {
 	/**
 	 * Use this method to add blocks for texture generation
 	 * 
-	 * @param block
-	 * @param textureName
-	 * @param parentTexture
-	 * @param masktype
-	 * @param maskDomain
-	 * @param alphaMask
+	 * @param block - an instance of the block to be retextured
+	 * @param textureName - texture name for the texture to be created
+	 * @param parentTexture - name of the background texture
+	 * @param masktype - name of the overlay
+	 * @param maskDomain - MODID for the domain in which the overlay can be found
+	 * @param alphaMask - set this to true for an alpha mask cutout (stalactites), set it to false for an overlay composite (ores)
 	 */
 	
 	public static void registerBlockOverlay(Block block, String textureName, String parentTexture, String masktype, String maskDomain, boolean alphaMask){
