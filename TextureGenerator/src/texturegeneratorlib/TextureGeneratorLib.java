@@ -4,22 +4,21 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 import org.apache.logging.log4j.Logger;
+
+
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import texturegeneratorlib.texturestitching.CustomTextureEnumerator;
-import texturegeneratorlib.texturestitching.CustomTextureGenerator;
-import texturegeneratorlib.texturestitching.OptifineIntegration;
-import texturegeneratorlib.texturestitching.ShadersModIntegration;
+import texturegeneratorlib.proxy.CommonProxy;
 import texturegeneratorlib.texturestitching.TextureInformation;
 
 
-@Mod(modid = TextureGeneratorLib.modid, name = "TextureGeneratorLib", version = "0.1")
+@Mod(modid = TextureGeneratorLib.modid, name = "TextureGeneratorLib", version = "0.2")
 public class TextureGeneratorLib {
 
 	public static  final String modid = "TextureGeneratorLib";
@@ -28,6 +27,10 @@ public class TextureGeneratorLib {
 	public static HashMap<String, TextureInformation> alphaMaskMap = new HashMap<String, TextureInformation>();
 	public static final String overlayDomain = "overlays";
 	public static HashSet<Object> retextureBlock = new HashSet<Object>();
+	
+	@SidedProxy(clientSide="texturegeneratorlib.proxy.ClientProxy", serverSide="texturegeneratorlib.proxy.CommonProxy")
+	public static CommonProxy proxy;
+
 
 	@EventHandler
 	public void PreInit(FMLPreInitializationEvent preEvent)
@@ -36,12 +39,7 @@ public class TextureGeneratorLib {
 	}
 	@EventHandler public void load(FMLInitializationEvent event)
 	{
-		MinecraftForge.EVENT_BUS.register(new CustomTextureEnumerator());
-		MinecraftForge.EVENT_BUS.register(new CustomTextureGenerator(overlayDomain, null));
-
-
-		OptifineIntegration.init();
-		ShadersModIntegration.init();
+		proxy.TextureGeneration();
 	}
 	@EventHandler
 	public void PostInit(FMLPostInitializationEvent postEvent){
